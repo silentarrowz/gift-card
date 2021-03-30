@@ -1,42 +1,51 @@
-import MobileInput from './MobileInput';
-import React, {useState} from 'react';
+import MobileInput from './components/MobileInput';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
+import Header from './components/Header';
+
 function App() {
-  const [isValid, setValidity] = useState(false);
-  const handleValid = (val)=> setValidity(val)
+  const [number, setNumber] = useState('');
+  useEffect(()=>{
+    setNumber(localStorage.getItem('number')||'');
+  },[]);
+
+  const info = [
+    {'question':'Where will I get the gift card?', 'answer':'You will receive it on Whatsapp/SMS on your mobile'},
+    {'question':'When will I receive the gift card?', 'answer':'Within 48 hours, when your Man Matters order is delivered.'},
+    {'question':'What if I cancel the order?', 'answer':'The voucher will not be delivered if you cancel the order.'},
+  ]
+
   return (
     <div className="App">
       <div className='wrapper'>
-      <div className='headerContainer'>
-        <h3>man matters</h3>
-        <h2>Congratulations</h2>
-
-        <div className='paytm'>
-          
-          <div>Paytm</div> 
-          <div>Gift Card Rs.200</div>
-        </div>
-       
-      </div>
+      <Header />
 
       <div className='content'>
-        <div className='content-top'>
-          You have won paytm gift card of Rs. 200 for placing order on man matters
-        </div>
-        <MobileInput handleValid={handleValid} />
-        <div className='enterNum'>Enter the same number used on man matters</div>
+        {number && <div className='content-top'>
+          <div className='gift-notice' >You have WON paytm gift card of Rs. 200 for placing the order on man matters</div>
+        </div>}
+        {!number && <MobileInput setNumber={setNumber} />}      
       </div>
-      <button>Wow! Get my paytm gift card  </button>
-     {isValid && 'Number is Valid'}
+     <div className='content-faq'>
+        {number && (
+          info.map((item)=>{
+            return (
+                <div className='row'>
+                  <div className='icon-wrapper'>icon</div>
+                  <div className='qa-wrapper'>
+                    <div className='question'> {item.question}</div>
+                    <div className='answer'>{item.answer}</div>
+                  </div>
+                </div>
+            )
+          })
+        )}
 
-     <div>
-     <div>Where will I get the gift card?</div>
-       <div>When will I receive the gift card?</div>
-       <div>What if I cancel the order?</div>
+       <div className='powered'>Powered by GoKwik</div>
      </div>
      </div>
-    </div>
+    </div>    
   );
 }
 

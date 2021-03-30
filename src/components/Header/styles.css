@@ -1,0 +1,35 @@
+.gift, .congratulations{
+  background: #C200D4;
+  background: -webkit-linear-gradient(to right, #C200D4 0%, #FDCD2F 100%);
+  background: -moz-linear-gradient(to right, #C200D4 0%, #FDCD2F 100%);
+  background: linear-gradient(to right, #C200D4 0%, #FDCD2F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 52px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.man{
+  font-size: 32px;
+}
+
+.man span{
+  position: relative;
+  top: 20px;
+  right: 53px;
+}
+
+.paytm{
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.pay{
+  color: #000877;
+}
+
+.tm{
+  color: #0099DE;
+}
+
